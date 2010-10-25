@@ -40,7 +40,20 @@ describe PostsController do
   end
 
   pending "GET index"
-  pending "GET show"
+
+  describe "GET show" do
+    it "returns requested post" do
+      should_find_forum
+      should_find_post
+
+      get :show, :forum_id => 4, :id => 3
+
+      assigns(:forum).should eq( @forum )
+      assigns(:post ).should eq( @post  )
+      response.should render_template("show")
+    end
+  end
+
   pending "GET new"
   pending "POST create"
   pending "GET edit"
