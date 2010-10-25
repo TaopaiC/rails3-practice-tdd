@@ -151,6 +151,17 @@ describe PostsController do
     end
   end
 
-  pending "DELETE destroy"
+  describe "DELETE destroy" do
+    it "destroys the requested post" do
+      should_find_forum
+      should_find_post
+
+      @post.should_receive(:destroy).and_return(true)
+
+      delete :destroy, {:forum_id => 4, :id => 3}
+
+      response.should redirect_to(forum_posts_path(@forum))
+    end
+  end
 
 end
