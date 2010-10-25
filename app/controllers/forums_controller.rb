@@ -17,7 +17,7 @@ class ForumsController < ApplicationController
   end
 
   def show
-    @forum = Forum.find(params[:id])
+    find_forum
     redirect_to forum_posts_path(@forum)
   end
 
