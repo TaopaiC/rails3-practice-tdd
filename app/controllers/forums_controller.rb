@@ -20,4 +20,8 @@ class ForumsController < ApplicationController
     @forum = Forum.find(params[:id])
     redirect_to forum_posts_path(@forum)
   end
+
+  def edit
+    @forum = Forum.find(params[:id])
+  end
 end

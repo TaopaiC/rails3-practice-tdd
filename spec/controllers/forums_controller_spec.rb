@@ -61,7 +61,17 @@ describe ForumsController do
     end
   end
 
-  pending "GET edit"
+  describe "GET edit" do
+    it "returns requested forum" do
+      @forum = mock_model(Forum)
+      Forum.should_receive(:find).with(3).and_return(@forum)
+
+      get :edit, :id => 3
+
+      assigns(:forum).should eq(@forum)
+      response.should render_template("edit")
+    end
+  end
 
   pending "PUT update"
 
