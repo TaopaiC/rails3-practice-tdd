@@ -33,6 +33,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post.destroy
+    redirect_to forum_posts_path(@forum)
+  end
 
   protected
   def find_forum
