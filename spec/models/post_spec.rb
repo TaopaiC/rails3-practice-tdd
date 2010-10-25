@@ -17,5 +17,8 @@
 require 'spec_helper'
 
 describe Post do
-  pending "add some examples to (or delete) #{__FILE__}"
+  pending "is valid with params"
+  pending "is invalid without title"
+  pending "is invalid without description"
+  pending "is invalid without forum_id"
 end
