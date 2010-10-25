@@ -10,4 +10,6 @@
 
 class Forum < ActiveRecord::Base
   has_many :posts, :autosave => true, :dependent => :destroy
+
+  validates_presence_of :title
 end
