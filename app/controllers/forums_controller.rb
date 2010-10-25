@@ -39,4 +39,9 @@ class ForumsController < ApplicationController
     @forum.destroy
     redirect_to forums_path
   end
+
+  protected
+  def find_forum
+    @forum = Forum.find(params[:id])
+  end
 end
