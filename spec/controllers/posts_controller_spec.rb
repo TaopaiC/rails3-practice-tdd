@@ -112,7 +112,19 @@ describe PostsController do
     end
   end
 
-  pending "GET edit"
+  describe "GET edit" do
+    it "returns requested post" do
+      should_find_forum
+      should_find_post
+
+      get :edit, :forum_id => 4, :id => 3
+
+      assigns(:forum).should eq( @forum )
+      assigns(:post ).should eq( @post  )
+      response.should render_template("edit")
+    end
+  end
+
   pending "PUT update"
   pending "DELETE destroy"
 
