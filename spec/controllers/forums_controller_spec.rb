@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe ForumsController do
 
+  def should_find_forum
+    @forum = mock_model(Forum)
+    controller.should_receive(:find_forum) { controller.instance_variable_set("@forum", @forum) }.ordered
+  end
+
   describe "before_filter" do
     it "find_forum returns requested forum" do
       @forum = mock_model(Forum)
@@ -65,8 +70,7 @@ describe ForumsController do
 
   describe "GET show" do
     it "redirect to forum_forums" do
-      @forum = mock_model(Forum)
-      Forum.should_receive(:find).with(3).and_return(@forum)
+      should_find_forum
 
       get :show, :id => 3
 
