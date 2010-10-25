@@ -1,4 +1,6 @@
 class ForumsController < ApplicationController
+  before_filter :find_forum, :only => [:show, :edit, :update, :destroy]
+
   def index
     @forums = Forum.all
   end
@@ -17,16 +19,13 @@ class ForumsController < ApplicationController
   end
 
   def show
-    find_forum
     redirect_to forum_posts_path(@forum)
   end
 
   def edit
-    find_forum
   end
 
   def update
-    find_forum
     if @forum.update_attributes(params[:forum])
       redirect_to forum_posts_path(@forum)
     else
@@ -35,7 +34,6 @@ class ForumsController < ApplicationController
   end
 
   def destroy
-    find_forum
     @forum.destroy
     redirect_to forums_path
   end
