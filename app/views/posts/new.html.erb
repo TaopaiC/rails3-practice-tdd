@@ -3,11 +3,5 @@
 <h2>New Post:</h2>
 
 <% form_for @post, :url => forum_posts_path do |form| %>
-  Title: <%= form.text_field(:title) %>
-  <br/>
-  Description: <%= form.text_area(:description) %>
-  <br/>
-  
-  <%= form.submit %>
-  <%= link_to "Cancel", forum_posts_path(@forum) %>
+  <%= render :partial => "form", :object => form %>
 <% end %>
