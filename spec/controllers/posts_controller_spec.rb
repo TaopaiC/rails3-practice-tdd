@@ -125,7 +125,32 @@ describe PostsController do
     end
   end
 
-  pending "PUT update"
+  describe "PUT update" do
+    before :each do
+      should_find_forum
+      should_find_post
+      @params = { "title" => Faker::Lorem.sentence }
+    end
+
+    it "update successfully with valid params" do
+      @post.should_receive(:update_attributes).with(@params).and_return(true)
+
+      get :update, {:forum_id => 4, :id => 3, :post => @params}
+
+      response.should redirect_to(forum_post_path(@forum, @post))
+    end
+
+    it "fails to update with invalid params" do
+      @post.should_receive(:update_attributes).with(@params).and_return(false)
+
+      get :update, {:forum_id => 4, :id => 3, :post => @params}
+
+      assigns(:forum).should eq(@forum)
+      assigns(:post ).should eq(@post)
+      response.should render_template("edit")
+    end
+  end
+
   pending "DELETE destroy"
 
 end
