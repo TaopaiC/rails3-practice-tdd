@@ -1,6 +1,19 @@
 require 'spec_helper'
 
 describe ForumsController do
+
+  describe "before_filter" do
+    it "find_forum returns requested forum" do
+      @forum = mock_model(Forum)
+      controller.params = {:id => 4}
+
+      Forum.should_receive(:find).with(4).and_return(@forum)
+      controller.send(:find_forum)
+
+      assigns(:forum).should eq(@forum)
+    end
+  end
+
   describe "GET index" do
     it "returns all forums" do
       @forums = [ mock_model(Forum) ]
