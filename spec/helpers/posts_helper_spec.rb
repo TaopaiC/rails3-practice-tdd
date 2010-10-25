@@ -1,15 +1,38 @@
-require 'spec_helper'
+require File.expand_path("../../spec_helper.rb", __FILE__)
 
-# Specs in this file have access to a helper object that includes
-# the PostsHelper. For example:
-#
-# describe PostsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe PostsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "menu" do
+    before :each do
+      @forum = mock_model(Forum)
+      assigns[:forum] = @forum
+    end
+
+    describe "#new_post_menu" do
+      it "display the new_post menu" do
+        menu = helper.new_post_menu
+
+        menu.should =~ /#{forum_posts_path(@forum)}/
+      end
+    end
+
+    describe "#post_menu" do
+      it "display the post menu" do
+        @post = mock_model(Post)
+        assigns[:post] = @post
+        menu = helper.post_menu
+
+        menu.should =~ /#{forum_posts_path(@forum)}/
+        menu.should =~ /#{edit_forum_post_path(@forum, @post)}/
+        menu.should =~ /#{forum_post_path(@forum, @post)}/
+      end
+    end
+
+    describe "#posts_menu" do
+      it "display the posts menu" do
+        menu = helper.posts_menu
+
+        menu.should =~ /#{new_forum_post_path(@forum)}/
+      end
+    end
+  end
 end
