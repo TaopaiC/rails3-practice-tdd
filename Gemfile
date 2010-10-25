@@ -13,4 +13,5 @@ group :development, :test do
   gem "rails3-generators" 
   gem "factory_girl_rails" 
   gem "faker" 
+  gem "rcov" 
 end
