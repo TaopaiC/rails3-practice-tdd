@@ -1,0 +1,11 @@
+<h2>Edit: <%= @post.title %></h2>
+
+<% form_for @post, :url => forum_post_path(@forum, @post) do |form| %>
+  Title: <%= form.text_field(:title) %>
+  <br/>
+  Description: <%= form.text_area(:description) %>
+  <br/>
+  
+  <%= form.submit %>
+  <%= link_to "Cancel", forum_posts_path(@forum) %>
+<% end %>
