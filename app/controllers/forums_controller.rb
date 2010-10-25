@@ -15,4 +15,9 @@ class ForumsController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @forum = Forum.find(params[:id])
+    redirect_to forum_posts_path(@forum)
+  end
 end
