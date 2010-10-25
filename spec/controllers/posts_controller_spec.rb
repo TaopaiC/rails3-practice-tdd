@@ -39,7 +39,19 @@ describe PostsController do
     end
   end
 
-  pending "GET index"
+  describe "GET index" do
+    it "returns all posts" do
+      should_find_forum
+      @posts = [mock_model(Post)]
+      @forum.should_receive(:posts).and_return(@posts)
+
+      get :index, :forum_id => 3
+
+      assigns(:forum).should eq( @forum )
+      assigns(:posts).should eq( @posts )
+      response.should render_template("index")
+    end
+  end
 
   describe "GET show" do
     it "returns requested post" do
