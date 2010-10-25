@@ -11,6 +11,13 @@
 require 'spec_helper'
 
 describe Forum do
-  pending "is valid with params"
-  pending "is invalid without title"
+  it "is valid with params" do
+    @params = {:title => Faker::Lorem.sentence}
+    Forum.new(@params).should be_valid
+  end
+
+  it "is invalid without title" do
+    @params = {}
+    Forum.new(@params).should_not be_valid
+  end
 end
