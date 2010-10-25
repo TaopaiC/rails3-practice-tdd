@@ -22,11 +22,11 @@ class ForumsController < ApplicationController
   end
 
   def edit
-    @forum = Forum.find(params[:id])
+    find_forum
   end
 
   def update
-    @forum = Forum.find(params[:id])
+    find_forum
     if @forum.update_attributes(params[:forum])
       redirect_to forum_posts_path(@forum)
     else
@@ -35,7 +35,7 @@ class ForumsController < ApplicationController
   end
 
   def destroy
-    @forum = Forum.find(params[:id])
+    find_forum
     @forum.destroy
     redirect_to forums_path
   end

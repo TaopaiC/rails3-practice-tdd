@@ -80,8 +80,7 @@ describe ForumsController do
 
   describe "GET edit" do
     it "returns requested forum" do
-      @forum = mock_model(Forum)
-      Forum.should_receive(:find).with(3).and_return(@forum)
+      should_find_forum
 
       get :edit, :id => 3
 
@@ -92,9 +91,8 @@ describe ForumsController do
 
   describe "PUT update" do
     it "update successfully with valid params" do
-      @forum = mock_model(Forum)
+      should_find_forum
       @params = { "title" => Faker::Lorem.sentence }
-      Forum.should_receive(:find).with(3).and_return(@forum)
       @forum.should_receive(:update_attributes).with(@params).and_return(true)
 
       put :update, {:id => 3, :forum => @params}
@@ -103,9 +101,8 @@ describe ForumsController do
     end
 
     it "fails to update with invalid params" do
-      @forum = mock_model(Forum)
+      should_find_forum
       @params = { "title" => Faker::Lorem.sentence }
-      Forum.should_receive(:find).with(3).and_return(@forum)
       @forum.should_receive(:update_attributes).with(@params).and_return(false)
 
       put :update, {:id => 3, :forum => @params}
@@ -117,8 +114,7 @@ describe ForumsController do
 
   describe "DELETE destroy" do
     it "destroys the requested forum" do
-      @forum = mock_model(Forum)
-      Forum.should_receive(:find).with(3).and_return(@forum)
+      should_find_forum
       @forum.should_receive(:destroy).and_return(true)
 
       delete :destroy, {:id => 3}
