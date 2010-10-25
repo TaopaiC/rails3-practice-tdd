@@ -1,0 +1,10 @@
+<%= new_forum_menu %>
+
+<h2>New Forum:</h2>
+
+<% form_for @forum, :url => forums_path do |form| %>
+  Title: <%= form.text_field(:title) %>
+  
+  <%= form.submit %>
+  <%= link_to "Cancel", forums_path %>
+<% end %>

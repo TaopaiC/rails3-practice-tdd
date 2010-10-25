@@ -15,7 +15,17 @@ describe ForumsController do
 
   pending "GET show"
 
-  pending "GET new"
+  describe "GET new" do
+    it "returns a new forum form" do
+      @forum = mock_model(Forum)
+      Forum.should_receive(:new).and_return(@forum)
+
+      get :new
+
+      assigns(:forum).should eq(@forum)
+      response.should render_template("new")
+    end
+  end
 
   pending "POST create"
 
