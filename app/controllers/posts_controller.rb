@@ -25,6 +25,14 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def update
+    if @post.update_attributes(params[:post])
+      redirect_to forum_post_path(@forum, @post)
+    else
+      render :edit
+    end
+  end
+
 
   protected
   def find_forum
