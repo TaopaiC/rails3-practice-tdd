@@ -14,7 +14,7 @@ module ForumsHelper
         content_tag(:li, link_to("Forum list", forums_path)),
         content_tag(:li, link_to("Edit forum", edit_forum_path(@forum))),
         content_tag(:li, link_to("Destroy forum", forum_path(@forum), :method => :delete))
-        ].join
+        ].join.html_safe
       ),
     :id => "nav")
   end
