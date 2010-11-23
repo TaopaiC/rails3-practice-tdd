@@ -9,13 +9,11 @@ module ForumsHelper
 
   def forum_menu
     content_tag(:div,
-      content_tag(:ul,
-        [
-        content_tag(:li, link_to("Forum list", forums_path)),
-        content_tag(:li, link_to("Edit forum", edit_forum_path(@forum))),
-        content_tag(:li, link_to("Destroy forum", forum_path(@forum), :method => :delete))
-        ].join.html_safe
-      ),
+      content_tag(:ul) do
+        concat content_tag(:li, link_to("Forum list", forums_path))
+        concat content_tag(:li, link_to("Edit forum", edit_forum_path(@forum)))
+        concat content_tag(:li, link_to("Destroy forum", forum_path(@forum), :method => :delete))
+      end,
     :id => "nav")
   end
 
