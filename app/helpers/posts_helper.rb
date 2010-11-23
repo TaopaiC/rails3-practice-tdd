@@ -14,7 +14,7 @@ module PostsHelper
         content_tag(:li, link_to("Post list", forum_posts_path(@forum))),
         content_tag(:li, link_to("Edit post", edit_forum_post_path(@forum, @post))),
         content_tag(:li, link_to("Destroy post", forum_post_path(@forum, @post), :method => :delete))
-        ].join
+        ].join.html_safe
       ),
     :id => "nav")
   end
@@ -27,7 +27,7 @@ module PostsHelper
         content_tag(:li, link_to("Edit forum", edit_forum_path(@forum))),
         content_tag(:li, link_to("Destroy forum", forum_path(@forum), :method => :delete)),
         content_tag(:li, link_to("New post", new_forum_post_path(@forum))),
-        ].join
+        ].join.html_safe
       ),
     :id => "nav")
   end
